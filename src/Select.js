@@ -286,17 +286,23 @@ class Select extends React.Component {
 			return;
 		}
 
+		const stopEvent = () => {
+			// prevent default event handlers
+			event.stopPropagation();
+			event.preventDefault();
+		};
+
 		// close the menu
 		if(this.state.isOpen){
+			stopEvent();
 			this.closeMenu();
 		} else {
 			this.setState({
 				isOpen: true,
 			});
+			stopEvent();
 		}
-		// prevent default event handlers
-		event.stopPropagation();
-		event.preventDefault();
+
 	}
 
 	handleMouseDownOnMenu (event) {
